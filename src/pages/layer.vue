@@ -5,7 +5,7 @@
             <div>
                 <div class="logo">LOGO</div>
                 <div class="teamSelect">
-                    <el-select v-model="curTeam" placeholder="请选择" size="small">
+                    <el-select v-model="curTeam" placeholder="请选择" size="small" popper-class='teamoption'>
                         <el-option
                         v-for="item in teams"
                         :key="item.value"
@@ -16,6 +16,8 @@
                 </div>
             </div>
             <el-menu :default-openeds="['1']" 
+                router
+                :default-active="'/interview-list'"
                 background-color="#0c1855"
                 text-color="#d4d6e1">
                 <el-menu-item-group>
@@ -27,7 +29,7 @@
                 </el-menu-item-group>
                 <el-menu-item-group>
                     <template slot="title">在线面试</template>
-                    <el-menu-item index="2-1"><i class="el-icon-tickets" style="color: #d4d6e1"></i>面试列表</el-menu-item>
+                    <el-menu-item index="interview-list"><i class="el-icon-tickets" style="color: #d4d6e1"></i>面试列表</el-menu-item>
                     <el-menu-item index="2-2"><i class="el-icon-coin" style="color: #d4d6e1"></i>面试题库</el-menu-item>
                 </el-menu-item-group>
                 <el-menu-item-group>
@@ -117,7 +119,11 @@
   
   .el-aside {
     color: #333;
+
   }
+      ::webkit-scrollbar {
+            display: none;
+    }
   .el-menu-item{
       padding: 0px;
       font-size:14px;
@@ -143,11 +149,14 @@
 }
 .teamSelect{
     margin: 20px 30px;
-    font-size: 16px;
+    font-size: 12px;
+}
+.teamoption .el-select-dropdown__item{
+    font-size: 12px;
 }
 .teamSelect .el-select .el-input__inner{
     background-color: #0c1855;
-    font-size: 15px;
+    font-size: 12px;
     color: #d4d6e1;
     border: 1px solid #333d70;
 }

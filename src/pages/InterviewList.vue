@@ -50,28 +50,30 @@
         :label="column.label">
       </el-table-column>
       <el-table-column label="操作">
-        <template>
-          <el-button type="text">进入</el-button>|
-          <el-dropdown placement="bottom" trigger="click">
+        <template slot-scope="scope">
+          <el-button type="text" class="jinru">进入</el-button>|
+          <el-dropdown trigger="click" size="small" class="more-wraper">
             <span class="el-dropdown-link">
               更多<i class="el-icon-arrow-down el-icon--right"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item>删除</el-dropdown-item>
+              <el-dropdown-item :key='scope.$index'>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-      style="float:right;margin:20px;"
-      background
-      layout="prev, pager, next"
-      :page-size="page.pageSize"
-      :current-page="page.pageNum"
-      :total="tableData.length"
-      :pager-count="4">
-    </el-pagination>
+    <div class="pagination-wraper">
+      <el-pagination
+        style="float:right;"
+        background
+        layout="prev, pager, next"
+        :page-size="page.pageSize"
+        :current-page="page.pageNum"
+        :total="tableData.length"
+        :pager-count="4">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -195,6 +197,7 @@ export default {
 <style lang='scss' scoped>
 $mainColor: #193dfc;
 .interview-list-wraper{
+  padding-bottom: 60px;
   .title{
     font-size: 20px;
     font-weight: bold;
@@ -215,6 +218,24 @@ $mainColor: #193dfc;
     /deep/ .el-input__inner{
           height: 35px;
         }
+  }
+  .pagination-wraper{
+      width: cal(100%-220);
+      background: white;
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+      padding: 20px 10px 20px 0px;
+      z-index: 100;
+      text-align: right;
+  }
+  .jinru{
+    color: #394aa0;
+  }
+}
+.el-dropdown-menu{
+  .el-dropdown-menu__item{
+    color: #e52222
   }
 }
 .el-form-item{
@@ -251,7 +272,7 @@ $mainColor: #193dfc;
 }
 .el-dropdown-link {
     cursor: pointer;
-    color: #409EFF;
+    color: #394aa0;
   }
   .el-icon-arrow-down {
     font-size: 12px;
